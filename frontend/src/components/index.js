@@ -10,3 +10,4 @@ export { default as UserBadgeItem } from "./UserAvatar/UserBadgeItem";
 export { default as GroupChatModal } from "./miscellaneous/GroupChatModal";
 export { default as SingleChat } from "./SingleChat";
 export { default as UpdateGroupChatModal } from "./miscellaneous/UpdateGroupChatModal";
+export { default as ScrollableChat } from "./ScrollableChat";

@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { ChatState } from '../../context/ChatProvider';
 import { UserBadgeItem, UserListItem} from '../';
 
-const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain }) => {
+const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
     const [groupChatName, setGroupChatName] = useState();
     const [search, setSearch] = useState();
     const [searchResult, setSearchResult] = useState("");
@@ -106,6 +106,7 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain }) => {
 
             user1._id === user._id ? setSelectedChat() : setSelectedChat(data);
             setFetchAgain(!fetchAgain);
+            fetchMessages();
         } catch (error) {
             toast({
                 title: "Error occurred!",
@@ -190,7 +191,7 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain }) => {
             setLoading(false);
         };
     };
-    console.log(selectedChat.users)
+    
     return (
         <>
             <IconButton onClick={onOpen} display={{ base: "flex" }} icon={<ViewIcon />} />

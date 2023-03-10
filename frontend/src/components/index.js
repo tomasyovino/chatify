@@ -6,3 +6,7 @@ export { default as SideDrawer } from "./miscellaneous/SideDrawer";
 export { default as ProfileModal } from "./miscellaneous/ProfileModal";
 export { default as ChatLoading } from "./ChatLoading";
 export { default as UserListItem } from "./UserAvatar/UserListItem";
+export { default as UserBadgeItem } from "./UserAvatar/UserBadgeItem";
+export { default as GroupChatModal } from "./miscellaneous/GroupChatModal";
+export { default as SingleChat } from "./SingleChat";
+export { default as UpdateGroupChatModal } from "./miscellaneous/UpdateGroupChatModal";

@@ -20,7 +20,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     const [typing, setTyping] = useState(false);
     const [isTyping, setIsTyping] = useState(false);
 
-    const { user, selectedChat, setSelectedChat } = ChatState();
+    const { user, selectedChat, setSelectedChat, notification, setNotification } = ChatState();
     const toast = useToast();
 
     const defaultOptions = {
@@ -121,13 +121,16 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     useEffect(() => {
         socket.on("message received", (newMessageReceived) => {
             if (!selectedChatCompare || selectedChatCompare._id !== newMessageReceived.chat._id) {
-                // give notification
+                if (!notification?.includes(newMessageReceived)) {
+                    setNotification([newMessageReceived, ...notification]);
+                    setFetchAgain(!fetchAgain);
+                };
             } else {
                 setMessages([...messages, newMessageReceived]);
             };
         });
     });
-
+    
     const typingHandler = (e) => {
         setNewMessage(e.target.value);
 
@@ -150,7 +153,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             };
         }, timerLength);
     };
-
+    
     return (
         <>
             {
@@ -212,7 +215,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                                     </div>
                             }
 
-                            <FormControl onKeyDown={sendMessage} isRequired aria-autocomplete='off' mt={3}>
+                            <FormControl onKeyDown={sendMessage} isRequired aria-autocomplete='none' mt={3}>
                                 {
                                     isTyping
                                         ?
